@@ -8,7 +8,7 @@ pandas \
 scikit-learn \
 scipy==1.1.0 \
 Pillow \
-tensorflow \
+tensorflow==1.14.0 \
 "numpy<1.17" \
 h5py \
 opencv-python==4.2.0.32 \

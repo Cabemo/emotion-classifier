@@ -24,7 +24,7 @@ def upload():
 		eg_processor.process_image(image)
 		return send_file(str(pathlib.Path(__file__ + '/result')) + 'predicted_image.png', mimetype='image/png')
 	except Exception as err:
-		logging.error('No pudimos procesar la imagen enviada')
+		logging.error('No pudimos procesar la imagen enviada ' + str(err))
 		abort(400)
 
 
