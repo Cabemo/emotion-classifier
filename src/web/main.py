@@ -19,19 +19,28 @@ def add_to_dataset():
 	if not request.is_json:
 		return make_response(jsonify({
 			'error': '{ \'emotion\': [0-6],\'pixels\': [ pixel1, pixel2, pixeln, pixel2034 ] }',
-			'message': "Revisar la documentación si es necesario"
+			'message': "Revisar la documentacion si es necesario"
 		}), 400)
 
 	try:
-		#print(json.dumps(request.get_json())
-		validate_add_to_dataset(request.get_json())
+		json_req = request.get_json()
+		#print(json_req['pixels'])
+		print(DATASETPATH)
+		if(validate_add_to_dataset(json_req)):
+			with open(DATASETPATH, 'a+', newline='') as write_obj:
+				# Create a writer object from csv module
+				csv_writer = writer(write_obj)
+				# Add contents of list as last row in the csv file
+				#json_req['pixels'].insert(0, json_req['emotion'])
+				print()
+				csv_writer.writerow([1,1,1,1,1,1,1,1])
+			return make_response(jsonify({'message':'Insertado correctamente'}), 201)
+
+		return make_response(jsonify({
+		'error': '{ \'emotion\': [0-6],\'pixels\': [ pixel1, pixel2, pixeln, pixel2034 ] }',
+		'message': "Revisar la documentacion si es necesario"
+		}), 400)
 		
-		# with open(DATASETPATH, 'a+', newline='') as write_obj:
-		# 	# Create a writer object from csv module
-		# 	csv_writer = writer(write_obj)
-		# 	# Add contents of list as last row in the csv file
-		# 	csv_writer.writerow([1,1,1,1,1,1])
-		return make_response(jsonify({'message':'Insertado correctamente'}), 201)
 	except Exception as err:
 		logging.error('Error insertando')
 		abort(400)

@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/linux,macos,python,opencv,windows
 # Edit at https://www.gitignore.io/?templates=linux,macos,python,opencv,windows
 
@@ -188,3 +187,4 @@ $RECYCLE.BIN/
 
 .vscode/*
 facevenv/*
+emotion
