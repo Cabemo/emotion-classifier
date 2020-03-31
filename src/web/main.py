@@ -5,6 +5,7 @@ import pathlib
 from validate import validate_add_to_dataset
 import emotion_gender_processor as eg_processor
 
+
 # Ruta del archivo donde se almacenan los dataset via post
 DATASETPATH = str(pathlib.Path(__file__).parent.parent.parent.absolute()) + '/dataset/d.csv'
 
@@ -22,7 +23,7 @@ def upload():
 	try:
 		image = request.files['image'].read()
 		eg_processor.process_image(image)
-		return send_file(str(pathlib.Path(__file__ + '/result')) + 'predicted_image.png', mimetype='image/png')
+		return send_file(str(pathlib.Path(__file__).parent.parent.parent.absolute()) + '/result/predicted_image.png', mimetype='image/png')
 	except Exception as err:
 		logging.error('No pudimos procesar la imagen enviada ' + str(err))
 		abort(400)

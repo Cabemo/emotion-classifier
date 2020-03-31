@@ -91,4 +91,4 @@ def process_image(image):
     if not os.path.exists(dirname):
         os.mkdir(dirname)
 
-    cv2.imwrite(os.path.join(dirname, '/predicted_image.png'), bgr_image)
+    cv2.imwrite(os.path.join(dirname, 'predicted_image.png'), bgr_image)
