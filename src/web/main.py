@@ -1,5 +1,10 @@
 from flask import Flask, jsonify, make_response, request, abort, redirect, send_file
-#import logging
+from csv import writer
+import logging
+import pathlib
+from validate import validate_add_to_dataset
+
+DATASETPATH = str(pathlib.Path(__file__).parent.parent.parent.absolute()) + '/dataset/d.csv'
 
 app = Flask(__name__)
 
@@ -9,5 +14,36 @@ def index():
 			Puedes ver las instruciones en README.md
 		"""
 
+@app.route('/agregarimagen', methods=['POST'])
+def add_to_dataset():
+	if not request.is_json:
+		return make_response(jsonify({
+			'error': '{ \'emotion\': [0-6],\'pixels\': [ pixel1, pixel2, pixeln, pixel2034 ] }',
+			'message': "Revisar la documentación si es necesario"
+		}), 400)
+
+	try:
+		#print(json.dumps(request.get_json())
+		validate_add_to_dataset(request.get_json())
+		
+		# with open(DATASETPATH, 'a+', newline='') as write_obj:
+		# 	# Create a writer object from csv module
+		# 	csv_writer = writer(write_obj)
+		# 	# Add contents of list as last row in the csv file
+		# 	csv_writer.writerow([1,1,1,1,1,1])
+		return make_response(jsonify({'message':'Insertado correctamente'}), 201)
+	except Exception as err:
+		logging.error('Error insertando')
+		abort(400)
+
+@app.errorhandler(400)
+def bad_request(erro):
+		return make_response(jsonify({'error': 'No pudimos procesar la imagen enviada.'}), 400)
+
+@app.errorhandler(404)
+def not_found(error):
+		return make_response(jsonify({'error': 'Página no encontrada.'}), 404)
+
+
 if __name__ == '__main__':
-		app.run(debug=True, host='0.0.0.0', port=8084)
+		app.run(debug=True, host='0.0.0.0', port=8000)
