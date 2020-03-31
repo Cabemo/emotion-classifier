@@ -21,15 +21,16 @@ matplotlib \
 Flask \
 setuptools==41.0.0
 
-COPY . /opt/
-
 WORKDIR /opt/face-classifier
+
+COPY . .
+
 
 ENV PYTHONPATH=$PYTHONPATH:src
 ENV FACE_CLASSIFIER_PORT=8000
 EXPOSE $FACE_CLASSIFIER_PORT
 
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["python3"]
 
 #start the server
-#CMD ["src/web/faces.py"]
+CMD ["src/web/faces.py"]
