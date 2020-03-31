@@ -40,8 +40,8 @@ python3 src/web/main.py
 ## Opcion 2: Docker
 
 ```sh
-docker pull <img>
-docker run -d -p 8000:8000 <img>
+docker pull https://hub.docker.com/repository/docker/robtry/face
+docker run -d -p 8000:8000 robtry/face
 ```
 
 # Como usar

@@ -188,3 +188,4 @@ $RECYCLE.BIN/
 .vscode/*
 facevenv/*
 emotion
+result/*

@@ -26,11 +26,11 @@ WORKDIR /opt/face-classifier
 COPY . .
 
 
-ENV PYTHONPATH=$PYTHONPATH:src
+#ENV PYTHONPATH=$PYTHONPATH:src
 ENV FACE_CLASSIFIER_PORT=8000
 EXPOSE $FACE_CLASSIFIER_PORT
 
 ENTRYPOINT ["python3"]
 
 #start the server
-CMD ["src/web/faces.py"]
+CMD ["src/web/main.py"]
