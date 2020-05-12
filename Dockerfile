@@ -19,7 +19,8 @@ pyparsing \
 cycler \
 matplotlib \
 Flask \
-setuptools==41.0.0
+setuptools==41.0.0 \
+flask-cors
 
 WORKDIR /opt/face-classifier
 

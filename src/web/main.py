@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, make_response, request, abort, redirect, send_file
 from csv import writer
+from flask_cors import CORS
 import logging
 import pathlib
 from validate import validate_add_to_dataset
@@ -10,6 +11,7 @@ import emotion_gender_processor as eg_processor
 DATASETPATH = str(pathlib.Path(__file__).parent.parent.parent.absolute()) + '/dataset/d.csv'
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def index():
@@ -70,4 +72,4 @@ def not_found(error):
 
 
 if __name__ == '__main__':
-		app.run(debug=True, host='0.0.0.0', port=8000)
+		app.run(debug=True, host='0.0.0.0', port=8000, threaded=True)

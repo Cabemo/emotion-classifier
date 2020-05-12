@@ -28,7 +28,8 @@ pyparsing \
 cycler \
 matplotlib \
 Flask \
-setuptools==41.0.0
+setuptools==41.0.0 \
+flask-cors
 ```
 
 Una vez instaladas las dependencias necesarias basta con inicar Flask
@@ -40,7 +41,7 @@ python3 src/web/main.py
 ## Opcion 2: Docker
 
 ```sh
-docker pull https://hub.docker.com/repository/docker/robtry/face
+docker pull robtry/emotionapi
 docker run -d -p 8000:8000 robtry/face
 ```
 
